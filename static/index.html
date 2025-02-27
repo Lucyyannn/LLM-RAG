@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能旅游助手</title>
+    <link rel="icon" href="image/图标.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+</head>
+<body class="light-theme">
+    <div class="container">
+        <header id="header">
+            <div class="title-container">
+                <h1>智能旅游助手</h1>
+            </div>
+            <div class="rainbow-selector-container">
+                <button class="color-button light-theme" onclick="applyTheme('light-theme')"></button>
+                <button class="color-button red-theme" onclick="applyTheme('red-theme')"></button>
+                <button class="color-button orange-theme" onclick="applyTheme('orange-theme')"></button>
+                <button class="color-button green-theme" onclick="applyTheme('green-theme')"></button>
+
+                <button class="color-button indigo-theme" onclick="applyTheme('indigo-theme')"></button>
+                <button class="color-button night-theme" onclick="applyTheme('night-theme')"></button>
+            </div>                       
+        </header>
+        <main>
+            <!-- 左侧会话框 -->
+            <div class="sidebar" id="sidebar">
+                <div class="scroll-container">
+                    <ul id="conversation-list">
+                        <!-- 会话列表项将出现在这里 -->
+                    </ul>
+                </div>
+                <button class="new-conversation" onclick="newConversation()" title="添加会话">
+                    &#x271A;
+            </button>
+                <!-- 收起按钮 -->
+                <button id="toggle-sidebar" class="toggle-sidebar" onclick="toggleSidebar()" title="收起会话记录">&#9664;</button>
+            </div>
+
+            <!-- 弹出按钮 -->
+            <button id="toggle-sidebar-collapsed" class="toggle-sidebar-collapsed" onclick="toggleSidebar()" title="弹出会话记录">&#9654;</button>
+
+            <!-- 中间会话框 -->
+            <div class="chat-container" id="chat-container">
+                <div class="scroll-container">
+                    <div class="chat-box" id="chat-box">
+                        <!-- 聊天信息会出现在这里 -->
+                    </div>
+                </div>
+                <div id="input-box" class="input-box">
+                    <div class="language-dropdown">
+                        <input type="text" id="language-input" class="language-input" placeholder="输入语言">
+                        <div class="language-dropdown-content">
+                            <button onclick="setLanguage('中文')">中文</button>
+                            <button onclick="setLanguage('英文')">英文</button>
+                            <button onclick="setLanguage('西班牙语')">西班牙语</button>
+                            <button onclick="setLanguage('法语')">法语</button>
+                            <button onclick="setLanguage('德语')">德语</button>
+                            <!-- 其他语言按钮可以在这里添加 -->
+                        </div>
+                    </div>
+                    <input type="text" id="user-input" class="user-input" placeholder="你想去哪里？" onkeypress="handleKeyPress(event)">
+                    <button onclick="sendRequest()" id="send-button" class="send-button" title="发送">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M4 12l1.41 1.41L11 7.83v12.34h2V7.83l5.59 5.58L20 12l-8-8-8 8z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 右侧天气预报 -->
+            <div  id="sidebar_right" class="sidebar_right">
+                <h2 id="location_name" class="location_name"> </h2>
+                <div class="top-section">
+                    <div class="header-container">
+                        <button class="image-button" onclick="previousImage()">&#9664;</button>
+                        <h2 id="attraction-name" class="center-text"></h2>
+                        <button class="image-button" onclick="nextImage()">&#9654;</button>
+                    </div>
+                    <div class="image-container">
+                        <img id="attraction-image" src="" alt="景点图片">
+                    </div>
+                </div>
+                <div class="bottom-section">
+                    <div class="weather-title-container">
+                        <h2>天气预报</h2>
+                    </div>
+                    <div class="weather-forecast" id="weather-forecast">
+                        <div class="weather-scroll-container">
+                    <ul id="weather-list">
+                    </ul>
+                        <!--显示当前地区-->
+                        <div class="weather-item" id="day-1"></div>
+                        <div class="weather-item" id="day-2"></div>
+                        <div class="weather-item" id="day-3"></div>
+                        <div class="weather-item" id="day-4"></div>
+                        <div class="weather-item" id="day-5"></div>
+                        <div class="weather-item" id="day-6"></div>
+                        <div class="weather-item" id="day-7"></div>
+                    </div>
+                </div>
+                    </div>
+            <!-- 收起按钮 -->
+            <button id="toggle-sidebar-right" class="toggle-sidebar-right" onclick="toggleSidebarRight()" title="收起天气">&#9654;</button>
+            <!-- 弹出按钮 -->
+            <button id="toggle-sidebar-right-collapsed" class="toggle-sidebar-right-collapsed" onclick="toggleSidebarRight()" title="弹出天气">&#9664;</button>
+        </main>
+    </div>
+    <script src="scripts.js"></script>
+    
+</body>
+</html>
